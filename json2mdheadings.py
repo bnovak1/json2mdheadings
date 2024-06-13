@@ -6,35 +6,36 @@ import json
 
 class JSON2MD:
     
-    def __init__(self, json_file):
+    def __init__(self):
         """
         Initializes an instance of the Json2MdHeadings class.
 
-        Parameters:
-        - json_file (str): The name of the JSON input file.
-
         Attributes:
-        - json_file (str): The name of the JSON input file.
-        - md_file (str): The name of the Markdown output file derived from the JSON file name.
         - md (str): The Markdown content, initially set to an empty string.
         """
         
-        self.json_file = json_file
-        self.md_file = json_file.replace(".json", ".md")
         self.md = ""
                     
-    def __call__(self):
-        """
-        Read in the JSON file. Convert the JSON data to Markdown and write it to a file.
-        """
-        
-        with open(self.json_file, 'r', encoding='utf-8') as file:
-            data = json.load(file)
-        
-        self.json_to_md(data)
-        
-        with open(self.md_file, 'w', encoding='utf-8') as file:
-            file.write(self.md)
+    def __call__(self, json_file):
+            """
+            Read in the JSON file. Convert the JSON data to Markdown and write it to a file.
+
+            Parameters:
+            - json_file (str): The path to the JSON file to be converted.
+
+            Returns:
+            None
+            """
+            
+            md_file = json_file.replace(".json", ".md")
+            
+            with open(json_file, 'r', encoding='utf-8') as file:
+                data = json.load(file)
+            
+            self.json_to_md(data)
+            
+            with open(md_file, 'w', encoding='utf-8') as file:
+                file.write(self.md)
 
     def json_to_md(self, data, level=1):
         """
@@ -62,7 +63,8 @@ class JSON2MD:
             self.md += "\n"
             for item in data:
                 self.md += f"- {item}\n"
+            self.md += "\n"
         
         # Otherwise, write the data in Markdown.
         else:
-            self.md += f"\n{data}\n"
+            self.md += f"\n{data}\n\n"
