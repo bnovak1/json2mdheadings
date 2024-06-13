@@ -7,7 +7,7 @@ A Python package for converting JSON data to Markdown with keys as headings. Sin
 You can install json2mdheadings using pip:
 
 ```shell
-pip install json2mdheadings
+pip install json2mdheadings@git+https://github.com/bnovak1/json2mdheadings
 ```
 
 ## Usage
