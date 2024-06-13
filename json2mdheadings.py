@@ -1,5 +1,5 @@
 """
-A Python package for converting JSON data to Markdown with keys as headings up to the 6th level, then using nested lists after that.
+A Python package for converting JSON data to Markdown with keys as headings. Since markdown only supports headings up to level 6, this will not work "correctly" for JSON data with more than 6 levels of nesting. Nested lists might be used for JSON data with more than 6 levels of nesting, but this is not currently implemented. For lists of dictionaries, the keys of the dictionaries will not be converted to headings and the list will just be converted to a markdown list. The package is currently intended to be used for JSON data with a maximum of 6 levels of nesting and no lists of dictionaries.
 """
 
 import json
