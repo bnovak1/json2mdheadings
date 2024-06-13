@@ -3,22 +3,56 @@ import json
 from json2mdheadings import JSON2MD
 
 def test_init():
+    """
+    Test the initialization of the JSON2MD class.
+    
+    This function ensures that the Markdown content is initially set to an empty string.
+    
+    Args:
+        None
+    
+    Returns:
+        None
+    """
+     
     converter = JSON2MD()
     assert converter.md == ""
 
 def test_call(tmpdir):
+    """
+    Test the __call__ method of the JSON2MD class.
+    
+    This function creates a temporary JSON file, writes a JSON object to it, and then converts the JSON file to Markdown using the JSON2MD class. It asserts that the resulting Markdown file has the expected content.
+    
+    Args:
+        tmpdir: A temporary directory provided by the pytest framework.
+    
+    Returns:
+        None
+    """
+    
     # Create a temporary JSON file
     p = tmpdir.mkdir("sub").join("test.json")
     p.write('{"title": "Test Title"}')
+    
+    # Convert the JSON file to Markdown
     converter = JSON2MD()
     converter(str(p))
     assert p.new(ext="md").read() == "# title\n\nTest Title\n\n"
 
 def test_json_to_md():
+    """
+    Test cases for the json_to_md method of the JSON2MD class.
+    """
     
     converter = JSON2MD()
+    
+    # Empty dictionary
+    converter.json_to_md({}, 1)
+    assert converter.md == ""
 
     # Single key-value pair
+    converter.md = ""
     converter.json_to_md({"title": "Test Title"}, 1)
     assert converter.md == "# title\n\nTest Title\n\n"
     
