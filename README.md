@@ -15,7 +15,7 @@ The package is currently intended to be used for JSON data with a maximum of 6 l
 You can install json2mdheadings using pip:
 
 ```shell
-pip install json2mdheadings@git+https://github.com/bnovak1/json2mdheadings
+pip install json2mdheadings
 ```
 
 ## Usage
@@ -118,7 +118,7 @@ Author 2
 
 ## Testing
 
-To run the tests for json2mdheadings, use the following command:
+To run the tests for json2mdheadings (pytest package required), use the following command:
 
 ```shell
 python -m pytest tests
